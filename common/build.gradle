@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.vstankevich.common'
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    api "io.reactivex.rxjava3:rxandroid:$dep.rx.rx_android_version"
+    api "io.reactivex.rxjava3:rxkotlin:$dep.rx.rx_kotlin_version"
+
+    // kodein
+    api "org.kodein.di:kodein-di:$dep.kodein_version"
+    api "org.kodein.di:kodein-di-framework-android-x:$dep.kodein_version"
+
+    implementation "androidx.core:core-ktx:$dep.ktx"
+    implementation "androidx.appcompat:appcompat:$dep.appCompat"
+    implementation "com.google.android.material:material:$dep.material"
+    testImplementation "junit:junit:$dep.junit"
+
+    androidTestImplementation "androidx.test.ext:junit:$dep.junitExt"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$dep.espresso"
+}
